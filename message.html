@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Message</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Write down your message below.</h1>
+        <textarea id="message" placeholder="Type your message here..."></textarea>
+        <button id="sendButton">Send</button>
+    </div>
+    <script>
+        if (!localStorage.getItem('userName')) {
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('sendButton').addEventListener('click', function() {
+            const message = document.getElementById('message').value;
+            const name = localStorage.getItem('userName');
+            if (message) {
+                alert('This message will be converted into Morse code due to certain reasons and will be highly encrypted. Please hit continue to send the message.');
+                let messages = JSON.parse(localStorage.getItem('messages')) || [];
+                messages.push({ name, message });
+                localStorage.setItem('messages', JSON.stringify(messages));
+                window.location.href = 'message-sent.html';
+            }
+        });
+    </script>
+</body>
+</html>

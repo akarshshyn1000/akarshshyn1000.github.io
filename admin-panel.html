@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginForm">
+            <h1>Admin Login</h1>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button id="loginButton">Login</button>
+        </div>
+        <div id="adminPanel" style="display:none;">
+            <h1>Messages</h1>
+            <div id="messagesContainer"></div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginButton').addEventListener('click', function() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            if (username === 'akarsh_shyn' && password === 'ilovemehek') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                displayMessages();
+            } else {
+                alert('Invalid credentials');
+            }
+        });
+
+        function displayMessages() {
+            const messagesContainer = document.getElementById('messagesContainer');
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messagesContainer.innerHTML = '';
+            messages.forEach((msg, index) => {
+                const messageBox = document.createElement('div');
+                messageBox.className = 'messageBox';
+                messageBox.innerHTML = `
+                    <h2>${msg.name}</h2>
+                    <p>${msg.message}</p>
+                    <button class="deleteButton" onclick="deleteMessage(${index})">Delete</button>
+                `;
+                messagesContainer.appendChild(messageBox);
+            });
+        }
+
+        function deleteMessage(index) {
+            let messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.splice(index, 1);
+            localStorage.setItem('messages', JSON.stringify(messages));
+            displayMessages();
+        }
+    </script>
+</body>
+</html>

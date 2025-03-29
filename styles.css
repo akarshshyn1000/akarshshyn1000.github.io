@@ -1,0 +1,101 @@
+body {
+    font-family: 'Pixelify Sans', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+}
+
+.container {
+    width: 50%;
+    padding: 20px;
+    background: rgba(20, 20, 70, 0.7);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+h1 {
+    color: #fff;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+input, textarea {
+    width: 80%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+button {
+    padding: 15px 30px;
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    font-size: 1em;
+    display: block;
+    margin: 20px auto 0;
+}
+
+button:hover {
+    background: #1a1a2e;
+    transform: scale(1.05);
+}
+
+#messagesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.messageBox {
+    padding: 20px;
+    background: rgba(20, 20, 70, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-in-out;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.messageBox:hover {
+    transform: scale(1.05);
+}
+
+.deleteButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.deleteButton:hover {
+    transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
