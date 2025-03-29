@@ -16,14 +16,18 @@
             window.location.href = 'index.html';
         }
 
-        document.getElementById('sendButton').addEventListener('click', function() {
+        document.getElementById('sendButton').addEventListener('click', async function() {
             const message = document.getElementById('message').value;
             const name = localStorage.getItem('userName');
             if (message) {
                 alert('This message will be converted into Morse code due to certain reasons and will be highly encrypted. Please hit continue to send the message.');
-                let messages = JSON.parse(localStorage.getItem('messages')) || [];
-                messages.push({ name, message });
-                localStorage.setItem('messages', JSON.stringify(messages));
+                await fetch('https://your-server-endpoint/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, message })
+                });
                 window.location.href = 'message-sent.html';
             }
         });
