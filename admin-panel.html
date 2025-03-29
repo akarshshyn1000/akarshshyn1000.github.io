@@ -31,10 +31,11 @@
             }
         });
 
-        function displayMessages() {
+        async function displayMessages() {
             const messagesContainer = document.getElementById('messagesContainer');
-            const messages = JSON.parse(localStorage.getItem('messages')) || [];
             messagesContainer.innerHTML = '';
+            const response = await fetch('https://your-server-endpoint/messages');
+            const messages = await response.json();
             messages.forEach((msg, index) => {
                 const messageBox = document.createElement('div');
                 messageBox.className = 'messageBox';
@@ -47,10 +48,8 @@
             });
         }
 
-        function deleteMessage(index) {
-            let messages = JSON.parse(localStorage.getItem('messages')) || [];
-            messages.splice(index, 1);
-            localStorage.setItem('messages', JSON.stringify(messages));
+        async function deleteMessage(index) {
+            await fetch(`https://your-server-endpoint/messages/${index}`, { method: 'DELETE' });
             displayMessages();
         }
     </script>
