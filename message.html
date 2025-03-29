@@ -33,10 +33,14 @@
                         window.location.href = 'message-sent.html';
                     } else {
                         alert('Failed to send message. Please try again.');
+                        console.error('Failed to send message:', response.statusText);
                     }
                 } catch (error) {
                     alert('An error occurred. Please try again.');
+                    console.error('An error occurred:', error);
                 }
+            } else {
+                alert('Message cannot be empty.');
             }
         });
     </script>
